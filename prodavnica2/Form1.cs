@@ -25,9 +25,12 @@ namespace prodavnica2
 
         private void Prodavnica_Load(object sender, EventArgs e)
         {
+            SqlConnection veza = Konekcija.Connect();
+            veza.Open();
             string user = Program.user_ime + " " + Program.user_prezime;
             lbl_user.Text = user;
             cmb_polPopulate();
+            popuniRacun(GetCurrentRacunID(veza) + 1, DateTime.Now);
             //cmb_vrstaPopulate();
             //cmb_bojaPopulate();
             //cmb_brendPopulate();
@@ -100,7 +103,7 @@ namespace prodavnica2
         private void dataGridPopulate()
         {
             SqlConnection veza = Konekcija.Connect();
-            StringBuilder naredba = new StringBuilder("SELECT naziv, pol, brend, velicina, boja, cena  FROM lager ");
+            StringBuilder naredba = new StringBuilder("SELECT artikli.id, naziv, pol, brend, velicina, boja, cena, kolicina  FROM lager ");
             naredba.Append(" JOIN artikli on id_artikla = artikli.id ");
             naredba.Append(" JOIN tipovi on artikli.id_tipa = tipovi.id ");
             naredba.Append(" WHERE pol = @comboboxVrednost1 ");
@@ -114,7 +117,102 @@ namespace prodavnica2
             adapter.Fill(dt_grid);
             dataGridView.DataSource = dt_grid;
             dataGridView.AllowUserToAddRows = false;
-            //dataGridView.Columns["id"].Visible = false;
+            //dataGridView.Columns["kolicina"].Visible = false;
+            dataGridView.Columns["id"].Visible = false;
+        }
+        //private static SqlConnection veza = Konekcija.Connect();
+        //private static int br_racuna = GetCurrentRacunID(veza) + 1;
+        private int GetCurrentRacunID(SqlConnection veza)
+        {
+            //veza.Open();
+            SqlCommand command = new SqlCommand("SELECT MAX(id) FROM racun", veza);
+            object result = command.ExecuteScalar();
+            if (result != DBNull.Value && result != null)
+            {
+                return Convert.ToInt32(result);
+            }
+            else
+            {
+                // Ako nema postojećih računa, vratimo 0
+                return 0;
+            }
+            //veza.Close();
+        }
+        private void popuniRacun(int racunID,  DateTime datum)
+        {
+            string query = "INSERT INTO racun (id, datum) VALUES (@RacunID, @Datum)";
+            SqlConnection veza = Konekcija.Connect();
+            veza.Open();
+            // Kreiranje SqlCommand objekta sa SQL naredbom i konekcijom
+            using (SqlCommand command = new SqlCommand(query, veza))
+            {
+                // Dodavanje parametara za vrednosti ID-a računa i datuma
+                command.Parameters.AddWithValue("@RacunID", racunID);
+                command.Parameters.AddWithValue("@Datum", DateTime.Now);
+
+                // Izvršavanje SQL naredbe za umetanje
+                command.ExecuteNonQuery();
+            }
+            veza.Close();
+        }
+        private void StvUKrp_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+                SqlConnection veza = Konekcija.Connect();
+                veza.Open();
+                if (dataGridView.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = dataGridView.SelectedRows[0];
+                    int artikalID = Convert.ToInt32(selectedRow.Cells["id"].Value);
+                    int kolicina = Convert.ToInt32(selectedRow.Cells["kolicina"].Value);
+
+                    // Dodavanje u tabelu racun_stavke
+                    StringBuilder naredba = new StringBuilder("INSERT INTO racun_stavke (kolicina, cena, id_magacina, id_artikla, id_racuna) ");
+                    naredba.Append(" VALUES (@Kolicina, @Cena, @MagacinID, @ArtikalID, @RacunID)");
+                    SqlDataAdapter adapter = new SqlDataAdapter(naredba.ToString(), veza);
+                    adapter.SelectCommand.Parameters.AddWithValue("@Kolicina", 1);
+                    adapter.SelectCommand.Parameters.AddWithValue("@Cena", Convert.ToDouble(selectedRow.Cells["cena"].Value));
+                    adapter.SelectCommand.Parameters.AddWithValue("@MagacinID", 1); // Postavi odgovarajući ID magacina
+                    adapter.SelectCommand.Parameters.AddWithValue("@ArtikalID", artikalID);
+                    //popuniRacun(GetCurrentRacunID(veza)+1, DateTime.Now);
+                    adapter.SelectCommand.Parameters.AddWithValue("@RacunID", GetCurrentRacunID(veza)); // Postavi odgovarajući ID računa
+                    adapter.SelectCommand.ExecuteNonQuery();
+
+                    // Ažuriranje vrednosti u tabeli lager
+                    StringBuilder naredba3 = new StringBuilder("UPDATE lager SET kolicina = @Kolicina WHERE id_artikla = @ArtikalID");
+                    SqlDataAdapter adapter3 = new SqlDataAdapter(naredba3.ToString(), veza);
+                    adapter3.SelectCommand.Parameters.AddWithValue("@Kolicina", kolicina - 1);
+                    adapter3.SelectCommand.Parameters.AddWithValue("@ArtikalID", artikalID);
+                    adapter3.SelectCommand.ExecuteNonQuery();
+
+                    // Osveži DataGridView
+                    dataGridPopulate();
+                    MessageBox.Show("Stavka je uspesno dodata u korpu. ");
+                    /*DataTable dt_grid = new DataTable();
+                    adapter2.Fill(dt_grid);
+                    dataGridView.DataSource = dt_grid;
+                    dataGridView.AllowUserToAddRows = false;
+                    //dataGridView.Columns["kolicina"].Visible = false;
+                    dataGridView.Columns["id"].Visible = false;*/
+                }
+                else
+                {
+                    MessageBox.Show("Nije izabran red za dodavanje.");
+                }
+                veza.Close();
+            //}
+            /*catch(Exception greska)
+            {
+                MessageBox.Show("Greska pri dodavanju stavke u korpu ", greska.Message);
+            }*/
+        }
+
+        private void btn_Zavrsi_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Racun forma = new Racun();
+            forma.Show();
         }
     }
 }

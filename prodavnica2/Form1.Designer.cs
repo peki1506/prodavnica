@@ -39,14 +39,15 @@
             this.cmb_brend = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmb_pol = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_Zavrsi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(213, 108);
+            this.dataGridView.Location = new System.Drawing.Point(213, 137);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
@@ -55,12 +56,13 @@
             // 
             // StvUKrp
             // 
-            this.StvUKrp.Location = new System.Drawing.Point(498, 518);
+            this.StvUKrp.Location = new System.Drawing.Point(607, 537);
             this.StvUKrp.Name = "StvUKrp";
             this.StvUKrp.Size = new System.Drawing.Size(117, 59);
             this.StvUKrp.TabIndex = 1;
             this.StvUKrp.Text = "Stavi u korpu";
             this.StvUKrp.UseVisualStyleBackColor = true;
+            this.StvUKrp.Click += new System.EventHandler(this.StvUKrp_Click);
             // 
             // lbl_user
             // 
@@ -143,19 +145,32 @@
             this.cmb_pol.TabIndex = 14;
             this.cmb_pol.SelectedValueChanged += new System.EventHandler(this.cmb_pol_SelectedValueChanged);
             // 
-            // textBox1
+            // label2
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 555);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(244, 22);
-            this.textBox1.TabIndex = 15;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(622, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 16);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "PROIZVODI";
+            // 
+            // btn_Zavrsi
+            // 
+            this.btn_Zavrsi.Location = new System.Drawing.Point(1159, 537);
+            this.btn_Zavrsi.Name = "btn_Zavrsi";
+            this.btn_Zavrsi.Size = new System.Drawing.Size(130, 71);
+            this.btn_Zavrsi.TabIndex = 17;
+            this.btn_Zavrsi.Text = "Zavrsi kupovinu";
+            this.btn_Zavrsi.UseVisualStyleBackColor = true;
+            this.btn_Zavrsi.Click += new System.EventHandler(this.btn_Zavrsi_Click);
             // 
             // Prodavnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1289, 608);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(1411, 620);
+            this.Controls.Add(this.btn_Zavrsi);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cmb_pol);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cmb_brend);
@@ -190,7 +205,8 @@
         private System.Windows.Forms.ComboBox cmb_brend;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmb_pol;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_Zavrsi;
     }
 }
 

@@ -35,7 +35,7 @@ namespace prodavnica2
                 try
                 {
                     SqlConnection veza = Konekcija.Connect();
-                    SqlCommand komanda = new SqlCommand("SELECT * FROM korisnici WHERE email=@username", veza);
+                    SqlCommand komanda = new SqlCommand("SELECT * FROM klijenti WHERE email=@username", veza);
                     komanda.Parameters.AddWithValue("@username", email_txt.Text);
                     SqlDataAdapter adapter = new SqlDataAdapter(komanda);
                     DataTable tabela = new DataTable();

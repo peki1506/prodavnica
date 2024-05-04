@@ -30,7 +30,7 @@ namespace prodavnica2
             string user = Program.user_ime + " " + Program.user_prezime;
             lbl_user.Text = user;
             cmb_polPopulate();
-            popuniRacun(GetCurrentRacunID(veza) + 1, DateTime.Now);
+            popuniRacun(GetCurrentRacunID(veza) + 1, DateTime.Now, getKlijentID(veza));
             //cmb_vrstaPopulate();
             //cmb_bojaPopulate();
             //cmb_brendPopulate();
@@ -138,9 +138,29 @@ namespace prodavnica2
             }
             //veza.Close();
         }
-        private void popuniRacun(int racunID,  DateTime datum)
+        private int getKlijentID(SqlConnection veza)
         {
-            string query = "INSERT INTO racun (id, datum) VALUES (@RacunID, @Datum)";
+            int klijentID = 1;
+            /*string[] labela = lbl_user.Text.Split(' ');
+            string ime = labela[0];
+            string prezime = labela[1];*/
+            string query = "SELECT id FROM klijenti WHERE ime = @ime AND prezime = @prezime ";
+            using (SqlCommand command = new SqlCommand(query, veza))
+            {
+                command.Parameters.AddWithValue("@ime", Program.user_ime);
+                command.Parameters.AddWithValue("@prezime", Program.user_prezime);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                  klijentID = Convert.ToInt32(reader["id"]);
+                }
+                reader.Close();
+            }
+            return klijentID;
+        }
+        private void popuniRacun(int racunID,  DateTime datum, int klijentID)
+        {
+            string query = "INSERT INTO racun (id, datum, id_klijenta) VALUES (@RacunID, @Datum, @KlijentID)";
             SqlConnection veza = Konekcija.Connect();
             veza.Open();
             // Kreiranje SqlCommand objekta sa SQL naredbom i konekcijom
@@ -149,7 +169,7 @@ namespace prodavnica2
                 // Dodavanje parametara za vrednosti ID-a računa i datuma
                 command.Parameters.AddWithValue("@RacunID", racunID);
                 command.Parameters.AddWithValue("@Datum", DateTime.Now);
-
+                command.Parameters.AddWithValue("@KlijentID", klijentID);
                 // Izvršavanje SQL naredbe za umetanje
                 command.ExecuteNonQuery();
             }
@@ -157,8 +177,8 @@ namespace prodavnica2
         }
         private void StvUKrp_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 SqlConnection veza = Konekcija.Connect();
                 veza.Open();
                 if (dataGridView.SelectedRows.Count > 0)
@@ -201,11 +221,11 @@ namespace prodavnica2
                     MessageBox.Show("Nije izabran red za dodavanje.");
                 }
                 veza.Close();
-            //}
-            /*catch(Exception greska)
+            }
+            catch(Exception greska)
             {
                 MessageBox.Show("Greska pri dodavanju stavke u korpu ", greska.Message);
-            }*/
+            }
         }
 
         private void btn_Zavrsi_Click(object sender, EventArgs e)

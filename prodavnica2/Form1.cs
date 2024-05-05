@@ -68,6 +68,8 @@ namespace prodavnica2
             cmb_vrsta.ValueMember = "naziv";
             cmb_vrsta.DisplayMember = "naziv";
             cmb_vrsta.SelectedIndex = -1;
+            MessageBox.Show("Pazite prilikom kupovine! " +
+                "Nije moguce obrisati artikal iz korpe! ");
         }
         private void cmb_vrsta_SelectedValueChanged(object sender, EventArgs e)
         {

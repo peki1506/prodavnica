@@ -53,6 +53,7 @@ namespace prodavnica2
         {
             MessageBox.Show("Uspesno ste obavili kupovinu!" +
                             "Posetite nas ponovo! ");
+            Application.Exit();
         }
     }
 }

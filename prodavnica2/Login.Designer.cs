@@ -55,24 +55,27 @@
             // Email_lbl
             // 
             this.Email_lbl.AutoSize = true;
-            this.Email_lbl.Location = new System.Drawing.Point(244, 165);
+            this.Email_lbl.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Email_lbl.Location = new System.Drawing.Point(235, 156);
             this.Email_lbl.Name = "Email_lbl";
-            this.Email_lbl.Size = new System.Drawing.Size(41, 16);
+            this.Email_lbl.Size = new System.Drawing.Size(45, 24);
             this.Email_lbl.TabIndex = 2;
-            this.Email_lbl.Text = "Email";
+            this.Email_lbl.Text = "Email:";
             // 
             // loznika_lbl
             // 
             this.loznika_lbl.AutoSize = true;
-            this.loznika_lbl.Location = new System.Drawing.Point(244, 203);
+            this.loznika_lbl.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.loznika_lbl.Location = new System.Drawing.Point(235, 194);
             this.loznika_lbl.Name = "loznika_lbl";
-            this.loznika_lbl.Size = new System.Drawing.Size(53, 16);
+            this.loznika_lbl.Size = new System.Drawing.Size(54, 24);
             this.loznika_lbl.TabIndex = 3;
             this.loznika_lbl.Text = "Lozinka";
             // 
             // btn_login
             // 
-            this.btn_login.Location = new System.Drawing.Point(308, 243);
+            this.btn_login.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btn_login.Location = new System.Drawing.Point(320, 236);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(118, 45);
             this.btn_login.TabIndex = 4;
@@ -96,7 +99,7 @@
             this.label2.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(63, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(612, 40);
+            this.label2.Size = new System.Drawing.Size(585, 39);
             this.label2.TabIndex = 6;
             this.label2.Text = "Prodavnica sportske garderobe";
             // 

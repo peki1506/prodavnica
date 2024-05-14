@@ -47,17 +47,17 @@
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(237, 202);
+            this.dataGridView.Location = new System.Drawing.Point(237, 186);
             this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(852, 280);
+            this.dataGridView.Size = new System.Drawing.Size(657, 280);
             this.dataGridView.TabIndex = 0;
             // 
             // StvUKrp
             // 
-            this.StvUKrp.Location = new System.Drawing.Point(516, 537);
+            this.StvUKrp.Location = new System.Drawing.Point(237, 512);
             this.StvUKrp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.StvUKrp.Name = "StvUKrp";
             this.StvUKrp.Size = new System.Drawing.Size(102, 88);
@@ -70,7 +70,7 @@
             // 
             this.lbl_user.AutoSize = true;
             this.lbl_user.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lbl_user.Location = new System.Drawing.Point(904, 81);
+            this.lbl_user.Location = new System.Drawing.Point(849, 84);
             this.lbl_user.Name = "lbl_user";
             this.lbl_user.Size = new System.Drawing.Size(45, 24);
             this.lbl_user.TabIndex = 2;
@@ -100,7 +100,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(902, 46);
+            this.label3.Location = new System.Drawing.Point(847, 49);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 24);
             this.label3.TabIndex = 7;
@@ -114,7 +114,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(186, 62);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Izaberite \r\nodgovarajuce kategorije";
+            this.label4.Text = "Izaberite \r\nodgovarajuće kategorije";
             // 
             // label5
             // 
@@ -160,7 +160,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(607, 174);
+            this.label2.Location = new System.Drawing.Point(490, 149);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 24);
             this.label2.TabIndex = 16;
@@ -168,7 +168,7 @@
             // 
             // btn_Zavrsi
             // 
-            this.btn_Zavrsi.Location = new System.Drawing.Point(987, 537);
+            this.btn_Zavrsi.Location = new System.Drawing.Point(803, 512);
             this.btn_Zavrsi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Zavrsi.Name = "btn_Zavrsi";
             this.btn_Zavrsi.Size = new System.Drawing.Size(102, 88);
@@ -182,7 +182,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(1235, 716);
+            this.ClientSize = new System.Drawing.Size(1079, 666);
             this.Controls.Add(this.btn_Zavrsi);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmb_pol);

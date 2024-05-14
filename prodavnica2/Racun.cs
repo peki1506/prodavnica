@@ -22,6 +22,9 @@ namespace prodavnica2
         {
             string user = Program.user_ime + " " + Program.user_prezime;
             lbl_user.Text = user;
+            txtBox.Enabled = false;
+            txtBox2.Enabled = false;
+            txtBox3.Enabled = false;
             dataGridPopulate();
         }
         private void dataGridPopulate()
@@ -54,73 +57,72 @@ namespace prodavnica2
         {
             SqlConnection veza = Konekcija.Connect(); 
             string updateQuery = "UPDATE racun SET gotovo = 1 WHERE id = (SELECT MAX(ID) FROM racun)";
-
-                using (veza)
+            using (veza)
+            {
+                try
                 {
-                    try
+                    veza.Open();
+                    using (SqlCommand command = new SqlCommand(updateQuery, veza))
                     {
-                        veza.Open();
-                        using (SqlCommand command = new SqlCommand(updateQuery, veza))
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
                         {
-                            int rowsAffected = command.ExecuteNonQuery();
-                            if (rowsAffected > 0)
-                            {
-                                // Uspesno azuriranje
-                            }
-                            else
-                            {
-                                MessageBox.Show("Nema promena u bazi podataka.");
-                            }
+                            // Uspesno azuriranje
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nema promena u bazi podataka.");
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Greška: " + ex.Message);
-                    }
                 }
-                MessageBox.Show("Uspešno ste obavili kupovinu! Posetite nas ponovo!");
-                Application.Exit();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Greška: " + ex.Message);
+                }
+            }
+            MessageBox.Show("Uspešno ste obavili kupovinu! Posetite nas ponovo!");
+            Application.Exit();
         }
 
         private void btn_Obrisi_Click(object sender, EventArgs e)
         {
-                if (dataGridView.SelectedRows.Count > 0)
-                {
-                    int selectedRowId = Convert.ToInt32(dataGridView.SelectedRows[0].Cells["id1"].Value);
-                    SqlConnection veza = Konekcija.Connect();
-                    string deleteQuery = "DELETE FROM racun_stavke WHERE id = @id";
-                    using (veza)
-                    {
-                        try
-                        {
-                            veza.Open();
-                            using (SqlCommand command = new SqlCommand(deleteQuery, veza))
-                            {
-                                command.Parameters.AddWithValue("@id", selectedRowId);
+           if (dataGridView.SelectedRows.Count > 0)
+           {
+               int selectedRowId = Convert.ToInt32(dataGridView.SelectedRows[0].Cells["id1"].Value);
+               SqlConnection veza = Konekcija.Connect();
+               string deleteQuery = "DELETE FROM racun_stavke WHERE id = @id";
+               using (veza)
+               {
+                   try
+                   {
+                       veza.Open();
+                       using (SqlCommand command = new SqlCommand(deleteQuery, veza))
+                       {
+                           command.Parameters.AddWithValue("@id", selectedRowId);
 
-                                int rowsAffected = command.ExecuteNonQuery();
-                                if (rowsAffected > 0)
-                                {
-                                    dataGridView.Rows.RemoveAt(dataGridView.SelectedRows[0].Index);
-                                    MessageBox.Show("Stavka je uspešno obrisana.");
-                                    dataGridPopulate();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Nije pronađen red za brisanje.");
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Greška: " + ex.Message);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Molimo vas da izaberete red za brisanje.");
-                }
+                           int rowsAffected = command.ExecuteNonQuery();
+                           if (rowsAffected > 0)
+                           {
+                               dataGridView.Rows.RemoveAt(dataGridView.SelectedRows[0].Index);
+                               MessageBox.Show("Stavka je uspešno obrisana.");
+                               dataGridPopulate();
+                           }
+                           else
+                           {
+                               MessageBox.Show("Nije pronađen red za brisanje.");
+                           }
+                       }
+                   }
+                   catch (Exception ex)
+                   {
+                       MessageBox.Show("Greška: " + ex.Message);
+                   }
+               }
+           }
+           else
+           {
+               MessageBox.Show("Molimo vas da izaberete red za brisanje.");
+           }
         }
     }
 }

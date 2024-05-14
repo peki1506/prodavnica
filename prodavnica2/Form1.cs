@@ -31,9 +31,10 @@ namespace prodavnica2
             lbl_user.Text = user;
             cmb_polPopulate();
             popuniRacun(GetCurrentRacunID(veza) + 1, DateTime.Now, getKlijentID(veza));
-            //cmb_vrstaPopulate();
-            //cmb_bojaPopulate();
-            //cmb_brendPopulate();
+        }
+        public void InitLoad()
+        {
+            Prodavnica_Load(this, EventArgs.Empty);
         }
         private void cmb_polPopulate()
         {
@@ -59,7 +60,6 @@ namespace prodavnica2
             StringBuilder naredba = new StringBuilder("SELECT DISTINCT naziv FROM  artikli ");
             naredba.Append(" JOIN tipovi on id_tipa = tipovi.id ");
             naredba.Append(" WHERE pol = @comboboxVrednost");
-            //textBox1.Text = cmb_pol.SelectedValue.ToString();
             SqlDataAdapter adapter = new SqlDataAdapter(naredba.ToString(), veza);
             adapter.SelectCommand.Parameters.AddWithValue("@comboboxVrednost", cmb_pol.SelectedValue.ToString());
             DataTable dt_vrsta = new DataTable();
@@ -84,8 +84,6 @@ namespace prodavnica2
             naredba.Append(" WHERE naziv = @comboboxVrednost");
             SqlDataAdapter adapter = new SqlDataAdapter(naredba.ToString(), veza);
             adapter.SelectCommand.Parameters.AddWithValue("@comboboxVrednost", cmb_vrsta.SelectedValue.ToString());
-            //SqlDataAdapter adapter = new SqlDataAdapter("SELECT DISTINCT brend FROM  tipovi", veza);
-            //textBox1.Text = cmb_pol.SelectedValue.ToString();
             DataTable dt_brend = new DataTable();
             adapter.Fill(dt_brend);
             cmb_brend.DataSource = dt_brend;
@@ -108,7 +106,8 @@ namespace prodavnica2
             naredba.Append(" JOIN tipovi on artikli.id_tipa = tipovi.id ");
             naredba.Append(" WHERE pol = @comboboxVrednost1 ");
             naredba.Append(" AND naziv = @comboboxVrednost2 ");
-            naredba.Append(" AND brend = @comboboxVrednost3");
+            naredba.Append(" AND brend = @comboboxVrednost3 ");
+            naredba.Append(" AND kolicina > 0 ");
             SqlDataAdapter adapter = new SqlDataAdapter(naredba.ToString(), veza);
             adapter.SelectCommand.Parameters.AddWithValue("@comboboxVrednost1", cmb_pol.SelectedValue.ToString());
             adapter.SelectCommand.Parameters.AddWithValue("@comboboxVrednost2", cmb_vrsta.SelectedValue.ToString());
@@ -120,11 +119,8 @@ namespace prodavnica2
             dataGridView.Columns["kolicina"].Visible = false;
             dataGridView.Columns["id"].Visible = false;
         }
-        //private static SqlConnection veza = Konekcija.Connect();
-        //private static int br_racuna = GetCurrentRacunID(veza) + 1;
         private int GetCurrentRacunID(SqlConnection veza)
         {
-            //veza.Open();
             SqlCommand command = new SqlCommand("SELECT MAX(id) FROM racun", veza);
             object result = command.ExecuteScalar();
             if (result != DBNull.Value && result != null)
@@ -133,17 +129,12 @@ namespace prodavnica2
             }
             else
             {
-                // Ako nema postojećih računa, vratimo 0
                 return 0;
             }
-            //veza.Close();
         }
         private int getKlijentID(SqlConnection veza)
         {
             int klijentID = 1;
-            /*string[] labela = lbl_user.Text.Split(' ');
-            string ime = labela[0];
-            string prezime = labela[1];*/
             string query = "SELECT id FROM klijenti WHERE ime = @ime AND prezime = @prezime ";
             using (SqlCommand command = new SqlCommand(query, veza))
             {
@@ -163,14 +154,11 @@ namespace prodavnica2
             string query = "INSERT INTO racun (id, datum, id_klijenta) VALUES (@RacunID, @Datum, @KlijentID)";
             SqlConnection veza = Konekcija.Connect();
             veza.Open();
-            // Kreiranje SqlCommand objekta sa SQL naredbom i konekcijom
             using (SqlCommand command = new SqlCommand(query, veza))
             {
-                // Dodavanje parametara za vrednosti ID-a računa i datuma
                 command.Parameters.AddWithValue("@RacunID", racunID);
                 command.Parameters.AddWithValue("@Datum", DateTime.Now);
                 command.Parameters.AddWithValue("@KlijentID", klijentID);
-                // Izvršavanje SQL naredbe za umetanje
                 command.ExecuteNonQuery();
             }
             veza.Close();
@@ -187,7 +175,6 @@ namespace prodavnica2
                     int artikalID = Convert.ToInt32(selectedRow.Cells["id"].Value);
                     int kolicina = Convert.ToInt32(selectedRow.Cells["kolicina"].Value);
 
-                    // Dodavanje u tabelu racun_stavke
                     StringBuilder naredba = new StringBuilder("INSERT INTO racun_stavke (kolicina, cena, id_magacina, id_artikla, id_racuna) ");
                     naredba.Append(" VALUES (@Kolicina, @Cena, @MagacinID, @ArtikalID, @RacunID)");
                     SqlDataAdapter adapter = new SqlDataAdapter(naredba.ToString(), veza);
@@ -199,14 +186,12 @@ namespace prodavnica2
                     adapter.SelectCommand.Parameters.AddWithValue("@RacunID", GetCurrentRacunID(veza)); 
                     adapter.SelectCommand.ExecuteNonQuery();
 
-                    // Ažuriranje vrednosti u tabeli lager
                     StringBuilder naredba3 = new StringBuilder("UPDATE lager SET kolicina = @Kolicina WHERE id_artikla = @ArtikalID");
                     SqlDataAdapter adapter3 = new SqlDataAdapter(naredba3.ToString(), veza);
                     adapter3.SelectCommand.Parameters.AddWithValue("@Kolicina", kolicina - 1);
                     adapter3.SelectCommand.Parameters.AddWithValue("@ArtikalID", artikalID);
                     adapter3.SelectCommand.ExecuteNonQuery();
 
-                    // Osvežavanje DataGridView
                     dataGridPopulate();
                     MessageBox.Show("Stavka je uspesno dodata u korpu. ");
                 }

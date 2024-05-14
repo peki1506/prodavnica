@@ -195,10 +195,10 @@ namespace prodavnica2
                     SqlDataAdapter adapter = new SqlDataAdapter(naredba.ToString(), veza);
                     adapter.SelectCommand.Parameters.AddWithValue("@Kolicina", 1);
                     adapter.SelectCommand.Parameters.AddWithValue("@Cena", Convert.ToDouble(selectedRow.Cells["cena"].Value));
-                    adapter.SelectCommand.Parameters.AddWithValue("@MagacinID", 1); // Postavi odgovarajući ID magacina
+                    adapter.SelectCommand.Parameters.AddWithValue("@MagacinID", 1);
                     adapter.SelectCommand.Parameters.AddWithValue("@ArtikalID", artikalID);
                     //popuniRacun(GetCurrentRacunID(veza)+1, DateTime.Now);
-                    adapter.SelectCommand.Parameters.AddWithValue("@RacunID", GetCurrentRacunID(veza)); // Postavi odgovarajući ID računa
+                    adapter.SelectCommand.Parameters.AddWithValue("@RacunID", GetCurrentRacunID(veza)); 
                     adapter.SelectCommand.ExecuteNonQuery();
 
                     // Ažuriranje vrednosti u tabeli lager
@@ -208,7 +208,7 @@ namespace prodavnica2
                     adapter3.SelectCommand.Parameters.AddWithValue("@ArtikalID", artikalID);
                     adapter3.SelectCommand.ExecuteNonQuery();
 
-                    // Osveži DataGridView
+                    // Osvežavanje DataGridView
                     dataGridPopulate();
                     MessageBox.Show("Stavka je uspesno dodata u korpu. ");
                     /*DataTable dt_grid = new DataTable();

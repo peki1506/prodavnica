@@ -28,7 +28,7 @@ namespace prodavnica2
         {
             SqlConnection veza = Konekcija.Connect();
             StringBuilder naredba = new StringBuilder(" SELECT racun.id, artikli.naziv, tipovi.boja, tipovi.velicina, tipovi.brend, "); 
-            naredba.Append(" lager.cena, racun_stavke.kolicina, klijenti.popust, racun.datum, ");
+            naredba.Append(" lager.cena, racun_stavke.id, racun_stavke.kolicina, klijenti.popust, racun.datum, ");
             naredba.Append(" (SELECT SUM(cena)*(100-klijenti.popust)/100 FROM racun_stavke where id_racuna = (SELECT MAX(id) FROM racun)) AS ukupno ");
             naredba.Append(" FROM racun_stavke ");
             naredba.Append(" JOIN artikli ON racun_stavke.id_artikla = artikli.id JOIN tipovi ON tipovi.id = artikli.id_tipa ");
@@ -45,6 +45,7 @@ namespace prodavnica2
             dataGridView.Columns["ukupno"].Visible = false;
             dataGridView.Columns["popust"].Visible = false;
             dataGridView.Columns["datum"].Visible = false;
+            dataGridView.Columns["id1"].Visible = false;
             txtBox.Text = dataGridView.Rows[0].Cells["ukupno"].Value.ToString();
             txtBox2.Text = dataGridView.Rows[0].Cells["datum"].Value.ToString();
             txtBox3.Text = dataGridView.Rows[0].Cells["popust"].Value.ToString();
@@ -64,7 +65,7 @@ namespace prodavnica2
                             int rowsAffected = command.ExecuteNonQuery();
                             if (rowsAffected > 0)
                             {
-                                // Ažuriranje uspešno, možete dodati neku poruku ili log ovde
+                                // Uspesno azuriranje
                             }
                             else
                             {
@@ -77,12 +78,49 @@ namespace prodavnica2
                         MessageBox.Show("Greška: " + ex.Message);
                     }
                 }
-
-                // Prikaži poruku
                 MessageBox.Show("Uspešno ste obavili kupovinu! Posetite nas ponovo!");
-
-                // Zatvori aplikaciju
                 Application.Exit();
+        }
+
+        private void btn_Obrisi_Click(object sender, EventArgs e)
+        {
+                if (dataGridView.SelectedRows.Count > 0)
+                {
+                    int selectedRowId = Convert.ToInt32(dataGridView.SelectedRows[0].Cells["id1"].Value);
+                    SqlConnection veza = Konekcija.Connect();
+                    string deleteQuery = "DELETE FROM racun_stavke WHERE id = @id";
+                    using (veza)
+                    {
+                        try
+                        {
+                            veza.Open();
+                            using (SqlCommand command = new SqlCommand(deleteQuery, veza))
+                            {
+                                command.Parameters.AddWithValue("@id", selectedRowId);
+
+                                int rowsAffected = command.ExecuteNonQuery();
+                                if (rowsAffected > 0)
+                                {
+                                    dataGridView.Rows.RemoveAt(dataGridView.SelectedRows[0].Index);
+                                    MessageBox.Show("Stavka je uspešno obrisana.");
+                                    dataGridPopulate();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Nije pronađen red za brisanje.");
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Greška: " + ex.Message);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Molimo vas da izaberete red za brisanje.");
+                }
         }
     }
 }

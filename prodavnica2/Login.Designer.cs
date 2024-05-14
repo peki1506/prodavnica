@@ -34,18 +34,19 @@
             this.loznika_lbl = new System.Windows.Forms.Label();
             this.btn_login = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // email_txt
             // 
-            this.email_txt.Location = new System.Drawing.Point(247, 144);
+            this.email_txt.Location = new System.Drawing.Point(308, 159);
             this.email_txt.Name = "email_txt";
             this.email_txt.Size = new System.Drawing.Size(158, 22);
             this.email_txt.TabIndex = 0;
             // 
             // lozinka_txt
             // 
-            this.lozinka_txt.Location = new System.Drawing.Point(247, 215);
+            this.lozinka_txt.Location = new System.Drawing.Point(308, 197);
             this.lozinka_txt.Name = "lozinka_txt";
             this.lozinka_txt.PasswordChar = '*';
             this.lozinka_txt.Size = new System.Drawing.Size(158, 22);
@@ -54,7 +55,7 @@
             // Email_lbl
             // 
             this.Email_lbl.AutoSize = true;
-            this.Email_lbl.Location = new System.Drawing.Point(183, 150);
+            this.Email_lbl.Location = new System.Drawing.Point(244, 165);
             this.Email_lbl.Name = "Email_lbl";
             this.Email_lbl.Size = new System.Drawing.Size(41, 16);
             this.Email_lbl.TabIndex = 2;
@@ -63,7 +64,7 @@
             // loznika_lbl
             // 
             this.loznika_lbl.AutoSize = true;
-            this.loznika_lbl.Location = new System.Drawing.Point(183, 221);
+            this.loznika_lbl.Location = new System.Drawing.Point(244, 203);
             this.loznika_lbl.Name = "loznika_lbl";
             this.loznika_lbl.Size = new System.Drawing.Size(53, 16);
             this.loznika_lbl.TabIndex = 3;
@@ -71,7 +72,7 @@
             // 
             // btn_login
             // 
-            this.btn_login.Location = new System.Drawing.Point(266, 283);
+            this.btn_login.Location = new System.Drawing.Point(308, 243);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(118, 45);
             this.btn_login.TabIndex = 4;
@@ -82,17 +83,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(165, 75);
+            this.label1.Font = new System.Drawing.Font("Rockwell Nova Cond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(218, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 16);
+            this.label1.Size = new System.Drawing.Size(279, 31);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Dobro dosli! Unesite sledece podatke: ";
+            this.label1.Text = "Dobro došli! Unesite sledece podatke: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(63, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(612, 40);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Prodavnica sportske garderobe";
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 462);
+            this.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.ClientSize = new System.Drawing.Size(753, 349);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.loznika_lbl);
@@ -115,5 +129,6 @@
         private System.Windows.Forms.Label loznika_lbl;
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -31,8 +31,6 @@ namespace prodavnica2
             lbl_user.Text = user;
             cmb_polPopulate();
             popuniRacun(GetCurrentRacunID(veza) + 1, DateTime.Now, getKlijentID(veza));
-            MessageBox.Show("Pazite prilikom kupovine! " +
-                "Nije moguce obrisati artikal iz korpe! ");
             //cmb_vrstaPopulate();
             //cmb_bojaPopulate();
             //cmb_brendPopulate();
@@ -211,12 +209,6 @@ namespace prodavnica2
                     // Osvežavanje DataGridView
                     dataGridPopulate();
                     MessageBox.Show("Stavka je uspesno dodata u korpu. ");
-                    /*DataTable dt_grid = new DataTable();
-                    adapter2.Fill(dt_grid);
-                    dataGridView.DataSource = dt_grid;
-                    dataGridView.AllowUserToAddRows = false;
-                    //dataGridView.Columns["kolicina"].Visible = false;
-                    dataGridView.Columns["id"].Visible = false;*/
                 }
                 else
                 {

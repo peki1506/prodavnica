@@ -47,18 +47,20 @@
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(213, 137);
+            this.dataGridView.Location = new System.Drawing.Point(237, 202);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(868, 382);
+            this.dataGridView.Size = new System.Drawing.Size(852, 280);
             this.dataGridView.TabIndex = 0;
             // 
             // StvUKrp
             // 
-            this.StvUKrp.Location = new System.Drawing.Point(607, 537);
+            this.StvUKrp.Location = new System.Drawing.Point(516, 537);
+            this.StvUKrp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.StvUKrp.Name = "StvUKrp";
-            this.StvUKrp.Size = new System.Drawing.Size(117, 59);
+            this.StvUKrp.Size = new System.Drawing.Size(102, 88);
             this.StvUKrp.TabIndex = 1;
             this.StvUKrp.Text = "Stavi u korpu";
             this.StvUKrp.UseVisualStyleBackColor = true;
@@ -67,98 +69,109 @@
             // lbl_user
             // 
             this.lbl_user.AutoSize = true;
-            this.lbl_user.Location = new System.Drawing.Point(1004, 54);
+            this.lbl_user.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lbl_user.Location = new System.Drawing.Point(904, 81);
             this.lbl_user.Name = "lbl_user";
-            this.lbl_user.Size = new System.Drawing.Size(44, 16);
+            this.lbl_user.Size = new System.Drawing.Size(45, 24);
             this.lbl_user.TabIndex = 2;
             this.lbl_user.Text = "label1";
             // 
             // cmb_vrsta
             // 
             this.cmb_vrsta.FormattingEnabled = true;
-            this.cmb_vrsta.Location = new System.Drawing.Point(485, 54);
+            this.cmb_vrsta.Location = new System.Drawing.Point(459, 81);
+            this.cmb_vrsta.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmb_vrsta.Name = "cmb_vrsta";
-            this.cmb_vrsta.Size = new System.Drawing.Size(130, 24);
+            this.cmb_vrsta.Size = new System.Drawing.Size(114, 32);
             this.cmb_vrsta.TabIndex = 3;
             this.cmb_vrsta.SelectedValueChanged += new System.EventHandler(this.cmb_vrsta_SelectedValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(482, 17);
+            this.label1.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(455, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.Size = new System.Drawing.Size(40, 24);
             this.label1.TabIndex = 4;
             this.label1.Text = "Vrsta";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1004, 18);
+            this.label3.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(902, 46);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 16);
+            this.label3.Size = new System.Drawing.Size(60, 24);
             this.label3.TabIndex = 7;
             this.label3.Text = "Korisnik:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 38);
+            this.label4.Font = new System.Drawing.Font("Rockwell Nova Cond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(12, 51);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(154, 32);
+            this.label4.Size = new System.Drawing.Size(186, 62);
             this.label4.TabIndex = 8;
             this.label4.Text = "Izaberite \r\nodgovarajuce kategorije";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(784, 18);
+            this.label5.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(685, 46);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 16);
+            this.label5.Size = new System.Drawing.Size(43, 24);
             this.label5.TabIndex = 11;
             this.label5.Text = "Brend";
             // 
             // cmb_brend
             // 
             this.cmb_brend.FormattingEnabled = true;
-            this.cmb_brend.Location = new System.Drawing.Point(787, 54);
+            this.cmb_brend.Location = new System.Drawing.Point(689, 81);
+            this.cmb_brend.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmb_brend.Name = "cmb_brend";
-            this.cmb_brend.Size = new System.Drawing.Size(130, 24);
+            this.cmb_brend.Size = new System.Drawing.Size(114, 32);
             this.cmb_brend.TabIndex = 12;
             this.cmb_brend.SelectedValueChanged += new System.EventHandler(this.cmb_brend_SelectedValueChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(210, 18);
+            this.label6.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(233, 46);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(27, 16);
+            this.label6.Size = new System.Drawing.Size(28, 24);
             this.label6.TabIndex = 13;
             this.label6.Text = "Pol";
             // 
             // cmb_pol
             // 
             this.cmb_pol.FormattingEnabled = true;
-            this.cmb_pol.Location = new System.Drawing.Point(213, 53);
+            this.cmb_pol.Location = new System.Drawing.Point(237, 81);
+            this.cmb_pol.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmb_pol.Name = "cmb_pol";
-            this.cmb_pol.Size = new System.Drawing.Size(121, 24);
+            this.cmb_pol.Size = new System.Drawing.Size(114, 32);
             this.cmb_pol.TabIndex = 14;
             this.cmb_pol.SelectedValueChanged += new System.EventHandler(this.cmb_pol_SelectedValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(622, 103);
+            this.label2.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(607, 174);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 16);
+            this.label2.Size = new System.Drawing.Size(138, 24);
             this.label2.TabIndex = 16;
-            this.label2.Text = "PROIZVODI";
+            this.label2.Text = "DOSTUPNI PROIZVODI";
             // 
             // btn_Zavrsi
             // 
-            this.btn_Zavrsi.Location = new System.Drawing.Point(1159, 537);
+            this.btn_Zavrsi.Location = new System.Drawing.Point(987, 537);
+            this.btn_Zavrsi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Zavrsi.Name = "btn_Zavrsi";
-            this.btn_Zavrsi.Size = new System.Drawing.Size(130, 71);
+            this.btn_Zavrsi.Size = new System.Drawing.Size(102, 88);
             this.btn_Zavrsi.TabIndex = 17;
             this.btn_Zavrsi.Text = "Zavrsi kupovinu";
             this.btn_Zavrsi.UseVisualStyleBackColor = true;
@@ -166,9 +179,10 @@
             // 
             // Prodavnica
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1411, 620);
+            this.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.ClientSize = new System.Drawing.Size(1235, 716);
             this.Controls.Add(this.btn_Zavrsi);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmb_pol);
@@ -182,6 +196,8 @@
             this.Controls.Add(this.lbl_user);
             this.Controls.Add(this.StvUKrp);
             this.Controls.Add(this.dataGridView);
+            this.Font = new System.Drawing.Font("Rockwell Nova Cond", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Prodavnica";
             this.Text = "Prodavnica";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Prodavnica_FormClosed);

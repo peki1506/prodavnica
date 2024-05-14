@@ -51,9 +51,38 @@ namespace prodavnica2
         }
         private void btn_Plati_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Uspesno ste obavili kupovinu!" +
-                            "Posetite nas ponovo! ");
-            Application.Exit();
+            SqlConnection veza = Konekcija.Connect(); 
+            string updateQuery = "UPDATE racun SET gotovo = 1 WHERE id = (SELECT MAX(ID) FROM racun)";
+
+                using (veza)
+                {
+                    try
+                    {
+                        veza.Open();
+                        using (SqlCommand command = new SqlCommand(updateQuery, veza))
+                        {
+                            int rowsAffected = command.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                // Ažuriranje uspešno, možete dodati neku poruku ili log ovde
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nema promena u bazi podataka.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Greška: " + ex.Message);
+                    }
+                }
+
+                // Prikaži poruku
+                MessageBox.Show("Uspešno ste obavili kupovinu! Posetite nas ponovo!");
+
+                // Zatvori aplikaciju
+                Application.Exit();
         }
     }
 }

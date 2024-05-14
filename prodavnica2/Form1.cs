@@ -31,6 +31,8 @@ namespace prodavnica2
             lbl_user.Text = user;
             cmb_polPopulate();
             popuniRacun(GetCurrentRacunID(veza) + 1, DateTime.Now, getKlijentID(veza));
+            MessageBox.Show("Pazite prilikom kupovine! " +
+                "Nije moguce obrisati artikal iz korpe! ");
             //cmb_vrstaPopulate();
             //cmb_bojaPopulate();
             //cmb_brendPopulate();
@@ -68,8 +70,6 @@ namespace prodavnica2
             cmb_vrsta.ValueMember = "naziv";
             cmb_vrsta.DisplayMember = "naziv";
             cmb_vrsta.SelectedIndex = -1;
-            MessageBox.Show("Pazite prilikom kupovine! " +
-                "Nije moguce obrisati artikal iz korpe! ");
         }
         private void cmb_vrsta_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -119,7 +119,7 @@ namespace prodavnica2
             adapter.Fill(dt_grid);
             dataGridView.DataSource = dt_grid;
             dataGridView.AllowUserToAddRows = false;
-            //dataGridView.Columns["kolicina"].Visible = false;
+            dataGridView.Columns["kolicina"].Visible = false;
             dataGridView.Columns["id"].Visible = false;
         }
         //private static SqlConnection veza = Konekcija.Connect();
@@ -229,7 +229,6 @@ namespace prodavnica2
                 MessageBox.Show("Greska pri dodavanju stavke u korpu ", greska.Message);
             }
         }
-
         private void btn_Zavrsi_Click(object sender, EventArgs e)
         {
             this.Hide();

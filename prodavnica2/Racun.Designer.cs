@@ -39,6 +39,7 @@
             this.txtBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtBox3 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,16 +133,26 @@
             // 
             // txtBox3
             // 
-            this.txtBox3.Location = new System.Drawing.Point(721, 320);
+            this.txtBox3.Location = new System.Drawing.Point(684, 320);
             this.txtBox3.Name = "txtBox3";
-            this.txtBox3.Size = new System.Drawing.Size(100, 22);
+            this.txtBox3.Size = new System.Drawing.Size(39, 22);
             this.txtBox3.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(729, 320);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(19, 16);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "%";
             // 
             // Racun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 575);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtBox2);
@@ -175,5 +186,6 @@
         private System.Windows.Forms.TextBox txtBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtBox3;
+        private System.Windows.Forms.Label label6;
     }
 }
